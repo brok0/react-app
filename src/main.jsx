@@ -1,10 +1,34 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import * as React from "react";
+import * as ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Navigation from "./routes/root";
+import ErrorPage from "./pages/error-page";
+import AllMetups from "./pages/AllMeetups";
+import NewMetups from "./pages/NewMeetups";
+import Favourites from "./pages/Favorites";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigation />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "all-meetups",
+    element: <AllMetups />,
+  },
+  {
+    path: "new-meetups",
+    element: <NewMetups />,
+  },
+  {
+    path: "favourites",
+    element: <Favourites />,
+  },
+]);
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
